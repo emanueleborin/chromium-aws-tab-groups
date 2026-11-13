@@ -5,8 +5,8 @@ Estensione Chromium (Manifest V3) che raggruppa automaticamente le schede della 
 ## Come funziona
 
 - Sul portale IAM Identity Center (`*.awsapps.com/start`) legge la lista account e salva la mappa `ID account → nome` in `chrome.storage.local`. La mappa resta nel profilo del browser e non è nel repo.
-- Quando una scheda della console AWS (`<account>-<sessione>.<regione>.console.aws.amazon.com`) viene aperta o cambia URL, la sposta nel gruppo con il nome dell'account. Se il gruppo non esiste, lo crea.
-- Se l'account non è nella mappa, il gruppo usa l'ID account come titolo.
+- Quando una scheda della console AWS (`<account>-<sessione>.<regione>.console.aws.amazon.com`) viene aperta o cambia URL, la sposta nel gruppo della sua sessione. Se il gruppo non esiste, lo crea.
+- Se l'account non è nella mappa, il gruppo usa l'ID account al posto del nome.
 - All'installazione, all'avvio del browser e al clic sull'icona dell'estensione, raggruppa anche le schede già aperte.
 
 ## Installazione (sviluppo)
@@ -17,6 +17,6 @@ Estensione Chromium (Manifest V3) che raggruppa automaticamente le schede della 
 
 Dopo ogni modifica al codice, ricarica l'estensione dalla stessa pagina.
 
-## Stato
+## Raggruppamento
 
-Versione iniziale: raggruppamento per account. Il raggruppamento per sessione non è ancora incluso.
+Ogni sessione della console ha un proprio gruppo, con titolo `Nome account · sessione`. Due sessioni dello stesso account restano separate.
