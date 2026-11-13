@@ -31,6 +31,14 @@ async function groupTab(tab) {
     }
     return;
   }
+  const [unnamed] = await chrome.tabGroups.query({ windowId: tab.windowId, title: accountId });
+  if (unnamed) {
+    await chrome.tabGroups.update(unnamed.id, { title });
+    if (tab.groupId !== unnamed.id) {
+      await chrome.tabs.group({ groupId: unnamed.id, tabIds: tab.id });
+    }
+    return;
+  }
   const groupId = await chrome.tabs.group({ tabIds: tab.id });
   await chrome.tabGroups.update(groupId, { title, color: colorFor(accountId) });
 }
@@ -45,6 +53,12 @@ async function groupAllConsoleTabs() {
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.url || changeInfo.status === "complete") {
     enqueue(() => groupTab(tab));
+  }
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes.accountNames) {
+    groupAllConsoleTabs();
   }
 });
 
