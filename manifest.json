@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Chromium AWS Tab Groups",
+  "version": "0.1.0",
+  "description": "Raggruppa le schede della console AWS per account, usando la lista account del portale IAM Identity Center.",
+  "permissions": ["tabGroups", "storage"],
+  "host_permissions": [
+    "https://*.console.aws.amazon.com/*",
+    "https://*.awsapps.com/start*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_title": "Raggruppa le schede AWS"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.awsapps.com/start*"],
+      "js": ["src/portal.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
