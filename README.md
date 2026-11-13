@@ -19,4 +19,4 @@ Dopo ogni modifica al codice, ricarica l'estensione dalla stessa pagina.
 
 ## Raggruppamento
 
-Ogni sessione della console ha un proprio gruppo, con titolo `Nome account · sessione`. Due sessioni dello stesso account restano separate.
+Ogni sessione della console ha un proprio gruppo, con colore diverso. Il titolo è il nome dell'account. Se l'account ha più sessioni aperte, il titolo aggiunge il permission set (es. `AWSAdministratorAccess`) letto dalla pagina console (`src/console.js`). Se due sessioni dello stesso account hanno lo stesso permission set, il titolo aggiunge un numero.

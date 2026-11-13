@@ -19,6 +19,11 @@
       "matches": ["https://*.awsapps.com/start*"],
       "js": ["src/portal.js"],
       "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://*.console.aws.amazon.com/*"],
+      "js": ["src/console.js"],
+      "run_at": "document_idle"
     }
   ]
 }
