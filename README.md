@@ -1,22 +1,22 @@
 # chromium-aws-tab-groups
 
-Estensione Chromium (Manifest V3) che raggruppa automaticamente le schede della console AWS per account. Funziona su Chrome, Edge, Brave e altri browser basati su Chromium.
+Chromium extension (Manifest V3) that automatically groups AWS console tabs by account. Works on Chrome, Edge, Brave and other Chromium-based browsers.
 
-## Come funziona
+## How it works
 
-- Sul portale IAM Identity Center (`*.awsapps.com/start`) legge la lista account e salva la mappa `ID account → nome` in `chrome.storage.local`. La mappa resta nel profilo del browser e non è nel repo.
-- Quando una scheda della console AWS (`<account>-<sessione>.<regione>.console.aws.amazon.com`) viene aperta o cambia URL, la sposta nel gruppo della sua sessione. Se il gruppo non esiste, lo crea.
-- Se l'account non è nella mappa, il gruppo usa l'ID account al posto del nome.
-- All'installazione, all'avvio del browser e al clic sull'icona dell'estensione, raggruppa anche le schede già aperte.
+- On the IAM Identity Center portal (`*.awsapps.com/start`) it reads the account list and stores the `account ID → name` map in `chrome.storage.local`. The map stays in your browser profile and is not in the repo.
+- When an AWS console tab (`<account>-<session>.<region>.console.aws.amazon.com`) is opened or its URL changes, it moves the tab into the group for its session. If the group does not exist, it creates it.
+- If the account is not in the map, the group uses the account ID instead of the name.
+- On install, on browser startup and on a click on the extension icon, it also groups the tabs that are already open.
 
-## Installazione (sviluppo)
+## Installation (development)
 
-1. Apri `brave://extensions` (o `chrome://extensions`).
-2. Attiva "Modalità sviluppatore".
-3. Clicca "Carica estensione non pacchettizzata" e seleziona la cartella di questa repo.
+1. Open `brave://extensions` (or `chrome://extensions`).
+2. Enable "Developer mode".
+3. Click "Load unpacked" and select this repo's folder.
 
-Dopo ogni modifica al codice, ricarica l'estensione dalla stessa pagina.
+After each code change, reload the extension from the same page.
 
-## Raggruppamento
+## Grouping
 
-Ogni sessione della console ha un proprio gruppo, con colore diverso. Il titolo è il nome dell'account. Se l'account ha più sessioni aperte, il titolo aggiunge il permission set (es. `AWSAdministratorAccess`) letto dalla pagina console (`src/console.js`). Se due sessioni dello stesso account hanno lo stesso permission set, il titolo aggiunge un numero.
+Each console session has its own group, with a different color. The title is the account name. If the account has more than one open session, the title adds the permission set (e.g. `AWSAdministratorAccess`) read from the console page (`src/console.js`). If two sessions of the same account have the same permission set, the title adds a number.
